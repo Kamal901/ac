@@ -1,8 +1,3 @@
-#!/usr/bin/env bash
-# BIGTOKEN AUTO REGISTER & VERIFICATION
-# By Versailles / Viloid
-# Sec7or Team ~ Surabaya Hacker Link
-
 randEmail(){
 	g=$(curl -s https://api.randomuser.me)
 	f=$(echo $g | grep -oP '"first":"\K[^"]+')
@@ -25,16 +20,16 @@ readEmail(){
 }
 
 Regist(){
-	reg=$(curl -s -H "Accept: application/json" https://api.bigtoken.com/signup -d "email=$1&password=K@r1nc@n5&referral_id=$2&monetize=1")
+	reg=$(curl -s -H "Accept: application/json" https://api.buzzbreak.com/signup -d "email=$1&password=Kamaludin901&referral_id=$2&monetize=1")
 	echo $reg
 }
 
 Verif(){
-	verif=$(curl -s -H "Accept: application/json" https://api.bigtoken.com/signup/email-verification -d "email=$1&verification_code=$2")
+	verif=$(curl -s -H "Accept: application/json" https://api.buzzbreak.com/signup/email-verification -d "email=$1&verification_code=$2")
 	echo $verif
 }
 
-bigtoken(){
+buzzbreak(){
 	e=$(randEmail)
 	echo "[+] Creating Email : $e"
 	create=$(createEmail "$e")
@@ -68,9 +63,8 @@ waitingCheckInbox="60" 	# 60s / 1 menit Waktu tunggu untuk membaca inbox
 
 cat <<EOF
 +-------------------------------------------------+
-|	BIGTOKEN AUTO REGISTER & VERIFICATION
-|		By Versailles <3 Cans21
-+-------------------------------------------------+
+|	buzzbreak AUTO REGISTER & VERIFICATION
+--------------------------------------------------+
 EOF
 
 if [ -f "domain.txt" ]; then
