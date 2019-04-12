@@ -24,45 +24,6 @@ readEmail(){
 	echo $email
 }
 
-Regist(){
-	reg=$(curl -s -H "Accept: application/json" https://api.buzzbreak.com/signup -d "email=$1&password=Kamaludin901&referral_id=$2&monetize=1")
-	echo $reg
-}
-
-Verif(){
-	verif=$(curl -s -H "Accept: application/json" https://api.buzzbreak.com/signup/email-verification -d "email=$1&verification_code=$2")
-	echo $verif
-}
-
-buzzbreak(){
-	e=$(randEmail)
-	echo "[+] Creating Email : $e"
-	create=$(createEmail "$e")
-	reg=$(Regist "$e" $1 | grep -oP '"user_id":\K[^,]+')
-	if [[ -z $reg ]];then
-		echo "[-] Register Failed"
-	else
-		echo "[+] Success Register user_id : $reg"
-		echo -n "[+] Waiting $2s Fetch Token... "
-		sleep $2
-		toket=$(readEmail "$e" | grep -oP '(?<=verify%3Fcode%3D).*?(?=%26type%3D)' | head -1)
-		if [[ -z $toket ]];then
-			echo "[ Failed ]"
-			echo "https://generator.email/$e" >> unverif.txt
-			echo "[!] Manual Verify if Available [ Logs : unverif.txt ]"
-		else
-			echo "[ Success ]"
-			verif=$(Verif "$e" "$toket" | grep -oP '"reward":\K[^,]+')
-			if [[ "$verif" == "true" ]];then
-				echo "[+] Verification Success"
-			else
-				echo "[-] Verification Failed"
-			fi
-		fi
-	fi
-echo
-}
-
 ref="B00004257" 		# Code Referal kamu
 waitingCheckInbox="60" 	# 60s / 1 menit Waktu tunggu untuk membaca inbox
 
