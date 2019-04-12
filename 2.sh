@@ -69,7 +69,7 @@ EOF
 
 if [ -f "domain.txt" ]; then
 	while :;do
-		bigtoken $ref $waitingCheckInbox
+		buzzbreak $ref $waitingCheckInbox
 	done
 else
 	echo "Create list EmailGenerator Domain in file named 'domain.txt'"
